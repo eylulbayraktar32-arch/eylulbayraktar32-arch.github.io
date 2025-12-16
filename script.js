@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const col = document.createElement('div');
         col.className = 'col';
         col.innerHTML = `
-            <div class="card book-card shadow h-100">
+            <div class="card book-card shadow">
                 <img src="${book.img}" class="card-img-top book-img" alt="${book.title}" onerror="this.src='https://via.placeholder.com/300x450?text=Kapak+Yok';">
                 <div class="card-body d-flex flex-column text-center">
-                    <h5 class="card-title fw-bold">${book.title}</h5>
+                    <h5 class="card-title fw-bold fs-5 mt-3">${book.title}</h5> <!-- اسم الكتاب كبير وواضح تحت الصورة -->
                     <p class="text-muted">Yazar: ${book.author}</p>
                     <span class="badge bg-success condition-badge mb-2">${book.condition} Durumda</span>
-                    <p class="price mt-auto fw-bold">${book.price}</p>
+                    <p class="price mt-auto fs-4">${book.price}</p>
                     <button class="btn btn-success btn-lg mt-3" onclick="alert('Sipariş için WhatsApp: +90 XXX XXX XX XX')">
                         Kitabı Satın Al
                     </button>
@@ -34,5 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(col);
     });
 });
+
+
 
 
