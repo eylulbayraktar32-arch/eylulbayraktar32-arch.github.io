@@ -1,0 +1,41 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.book-card {
+    transition: all 0.3s ease;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.book-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.book-img {
+    height: 350px;
+    object-fit: cover;
+}
+
+.price {
+    font-size: 1.6rem;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.condition-badge {
+    font-size: 0.9rem;
+}
+
+.btn-order {
+    background-color: #27ae60;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-order:hover {
+    background-color: #219a52;
+}
