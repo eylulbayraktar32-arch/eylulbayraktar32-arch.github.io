@@ -1,20 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const books = [
-        { title: "Sarı Yüz", author: "R.F. Kuang", price: "120 ₺", condition: "Mükemmel", img: "https://m.media-amazon.com/images/I/81fJXB2R-JL.jpg" },
-        { title: "Gece Yarısı Kütüphanesi", author: "Matt Haig", price: "90 ₺", condition: "Çok İyi", img: "https://m.media-amazon.com/images/I/81kYgT5yrJL._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Rezonans Kanunu", author: "Pierre Franckh", price: "75 ₺", condition: "İyi", img: "https://m.media-amazon.com/images/I/513qwXn862L._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Atomik Alışkanlıklar", author: "James Clear", price: "95 ₺", condition: "Mükemmel", img: "https://m.media-amazon.com/images/I/513qwXn862L._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Engereğin Gözü", author: "Zülfü Livaneli", price: "85 ₺", condition: "Çok İyi", img: "https://m.media-amazon.com/images/I/71kxaO1Qf-L._AC_UF1000,1000_QL80_.jpg" },
-        { title: "1984", author: "George Orwell", price: "80 ₺", condition: "İyi", img: "https://m.media-amazon.com/images/I/71kxaO1Qf-L._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Simyacı", author: "Paulo Coelho", price: "70 ₺", condition: "Çok İyi", img: "https://m.media-amazon.com/images/I/61FdWtwanqL._AC_UF894,1000_QL80_.jpg" },
-        { title: "Sapiens", author: "Yuval Noah Harari", price: "130 ₺", condition: "Mükemmel", img: "https://m.media-amazon.com/images/I/91b0nX2YHaL._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Küçük Prens", author: "Antoine de Saint-Exupéry", price: "50 ₺", condition: "Çok İyi", img: "https://m.media-amazon.com/images/I/71jG+NT4+3L._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Dune", author: "Frank Herbert", price: "110 ₺", condition: "İyi", img: "https://m.media-amazon.com/images/I/81kYgT5yrJL._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Nutuk", author: "Mustafa Kemal Atatürk", price: "60 ₺", condition: "Mükemmel", img: "https://m.media-amazon.com/images/I/81fSaB4J4eL._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Madonna in a Fur Coat", author: "Sabahattin Ali", price: "65 ₺", condition: "Çok İyi", img: "https://m.media-amazon.com/images/I/81UxgjnqwbL._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Körlük", author: "José Saramago", price: "80 ₺", condition: "İyi", img: "https://m.media-amazon.com/images/I/71aK1Z7R8KL._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Harry Potter ve Felsefe Taşı", author: "J.K. Rowling", price: "100 ₺", condition: "Mükemmel", img: "https://m.media-amazon.com/images/I/71-++hbbERL._AC_UF1000,1000_QL80_.jpg" },
-        { title: "Suç ve Ceza", author: "Fyodor Dostoyevski", price: "90 ₺", condition: "Çok İyi", img: "https://m.media-amazon.com/images/I/81UxgjnqwbL._AC_UF1000,1000_QL80_.jpg" }
+        { title: "Sarı Yüz", author: "R.F. Kuang", price: "120 ₺", condition: "Mükemmel", img: "https://i.dr.com.tr/cache/600x600-0/originals/0002012345001-1.jpg" },
+        { title: "Gece Yarısı Kütüphanesi", author: "Matt Haig", price: "90 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001934567001-1.jpg" },
+        { title: "Rezonans Kanunu", author: "Pierre Franckh", price: "75 ₺", condition: "İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000670424-1.jpg" },
+        { title: "Engereğin Gözü", author: "Zülfü Livaneli", price: "85 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0002012346001-1.jpg" },
+        { title: "Atomik Alışkanlıklar", author: "James Clear", price: "95 ₺", condition: "Mükemmel", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001983750001-1.jpg" },
+        { title: "1984", author: "George Orwell", price: "80 ₺", condition: "İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001789098001-1.jpg" },
+        { title: "Simyacı", author: "Paulo Coelho", price: "70 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000064101-1.jpg" },
+        { title: "Sapiens", author: "Yuval Noah Harari", price: "130 ₺", condition: "Mükemmel", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000633872-1.jpg" },
+        { title: "Küçük Prens", author: "Antoine de Saint-Exupéry", price: "50 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000628979-1.jpg" },
+        { title: "Kürk Mantolu Madonna", author: "Sabahattin Ali", price: "65 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000058245-1.jpg" }
     ];
 
     const container = document.getElementById('books-container');
@@ -39,6 +34,5 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(col);
     });
 });
-
 
 
