@@ -51,6 +51,8 @@ function openModal(title, author, price, condition, img) {
     const modal = new bootstrap.Modal(document.getElementById('bookModal'));
     modal.show();
 }
+"Tكرار tamamen kaldırıldı"
+
 
 
 
