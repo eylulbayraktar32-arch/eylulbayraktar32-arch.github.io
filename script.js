@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // مسح أي محتوى قديم عشان ما يتكررش
+    const container = document.getElementById('books-container');
+    if (container) {
+        container.innerHTML = '';
+    } else {
+        console.error('books-container bulunamadı!');
+        return;
+    }
+
     const books = [
         { title: "Sarı Yüz", author: "R. F. Kuang", price: "120 ₺", condition: "Mükemmel", img: "https://i.dr.com.tr/cache/600x600-0/originals/0002171557001-1.jpg" },
         { title: "Gece Yarısı Kütüphanesi", author: "Matt Haig", price: "90 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001922926001-1.jpg" },
@@ -11,11 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { title: "Küçük Prens", author: "Antoine de Saint-Exupéry", price: "50 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000689023-1.jpg" },
         { title: "Kürk Mantolu Madonna", author: "Sabahattin Ali", price: "65 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000058245-1.jpg" }
     ];
-
-    const container = document.getElementById('books-container');
-
-    // امسح أي محتوى قديم عشان ما يتكررش
-    container.innerHTML = '';
 
     books.forEach(book => {
         const col = document.createElement('div');
