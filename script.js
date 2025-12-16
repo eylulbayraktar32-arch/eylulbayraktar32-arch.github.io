@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Script çalışıyor, kitaplar ekleniyor!');
     const books = [
         { title: "Sarı Yüz", author: "R. F. Kuang", price: "120 ₺", condition: "Mükemmel", img: "https://i.dr.com.tr/cache/600x600-0/originals/0002171557001-1.jpg" },
         { title: "Gece Yarısı Kütüphanesi", author: "Matt Haig", price: "90 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001922926001-1.jpg" },
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(col);
     });
 });
+
 
 
 
