@@ -53,3 +53,4 @@ function openModal(title, author, price, condition, img) {
 
 
 
+
