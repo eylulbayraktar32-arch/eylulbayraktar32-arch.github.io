@@ -13,6 +13,13 @@ col.innerHTML = `
         </div>
     </div>
 `;
+function openModal(title, author, price, condition, img) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalAuthor').innerText = author;
+    document.getElementById('modalPrice').innerText = price;
+    document.getElementById('modalCondition').innerText = condition;
+    document.getElementById('modalImg').src = img;
+}
 
 
 
