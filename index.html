@@ -35,49 +35,52 @@
     <section id="kitaplar" class="container my-5">
         <h2 class="text-center mb-5">Mevcut Kitaplar</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4" id="books-container">
-            <!-- الكتب هتضاف هنا بالجافاسكريبت -->
+            <!-- الكتب هتضاف هنا تلقائياً بواسطة JavaScript -->
         </div>
-    </section> <section class="container my-5">
-    <h2 class="text-center mb-5">Yeni Kitap Ekle (Yönetici)</h2>
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <form id="add-book-form" class="bg-white p-4 rounded shadow">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Kitap Adı</label>
-                        <input type="text" class="form-control" id="title" required>
+    </section>
+
+    <!-- قسم إضافة كتاب جديد -->
+    <section class="container my-5">
+        <h2 class="text-center mb-5">Yeni Kitap Ekle (Yönetici)</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form id="add-book-form" class="bg-white p-4 rounded shadow">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Kitap Adı</label>
+                            <input type="text" class="form-control" id="title" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Yazar</label>
+                            <input type="text" class="form-control" id="author" required>
+                        </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Yazar</label>
-                        <input type="text" class="form-control" id="author" required>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Durum</label>
+                            <select class="form-select" id="condition" required>
+                                <option value="Mükemmel Durumda">Mükemmel Durumda</option>
+                                <option value="Çok İyi Durumda">Çok İyi Durumda</option>
+                                <option value="İyi Durumda">İyi Durumda</option>
+                                <option value="Okunmuş">Okunmuş</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Fiyat (₺)</label>
+                            <input type="number" class="form-control" id="price" required min="0">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Resim URL (İsteğe Bağlı)</label>
+                            <input type="url" class="form-control" id="image" placeholder="https://ornek.com/resim.jpg">
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Durum</label>
-                        <select class="form-select" id="condition" required>
-                            <option value="Mükemmel Durumda">Mükemmel Durumda</option>
-                            <option value="Çok İyi Durumda">Çok İyi Durumda</option>
-                            <option value="İyi Durumda">İyi Durumda</option>
-                            <option value="Okunmuş">Okunmuş</option>
-                        </select>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success btn-lg">Kitabı Ekle</button>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Fiyat (₺)</label>
-                        <input type="number" class="form-control" id="price" required min="0">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Resim URL (İsteğe Bağlı)</label>
-                        <input type="url" class="form-control" id="image" placeholder="https://ornek.com/resim.jpg">
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-success btn-lg">Kitabı Ekle</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="iletisim" class="bg-dark text-white py-5">
         <div class="container text-center">
@@ -89,7 +92,7 @@
         </div>
     </section>
 
-    <!-- Modal واحد بس -->
+    <!-- Modal لعرض تفاصيل الكتاب -->
     <div class="modal fade" id="bookModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -105,7 +108,7 @@
                     <p>Çok iyi durumda, sayfaları temiz. Hemen teslimat!</p>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-success btn-lg" onclick="alert('WhatsApp: +90 XXX XXX XX XX')">
+                    <button type="button" class="btn btn-success btn-lg" onclick="alert('WhatsApp ile sipariş için: +90 XXX XXX XX XX')">
                         WhatsApp ile Sipariş Ver
                     </button>
                 </div>
@@ -117,6 +120,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
