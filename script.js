@@ -1,57 +1,98 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // مسح أي محتوى قديم عشان ما يتكررش
+// الكتب الأساسية - أضف هنا الكتب اللي موجودة حالياً في موقعك
+let books = [
+    // مثال (غيّرها بكتبك الحقيقية):
+    // {
+    //     title: "1984",
+    //     author: "George Orwell",
+    //     condition: "Çok İyi Durumda",
+    //     price: 50,
+    //     image: "https://example.com/1984.jpg"
+    // }
+];
+
+// تحميل الكتب المحفوظة من المتصفح إذا موجودة
+if (localStorage.getItem('books')) {
+    books = JSON.parse(localStorage.getItem('books'));
+}
+
+// عرض الكتب في الصفحة
+function renderBooks() {
     const container = document.getElementById('books-container');
-    if (container) {
-        container.innerHTML = '';
-    } else {
-        console.error('books-container bulunamadı!');
+    container.innerHTML = '';
+
+    if (books.length === 0) {
+        container.innerHTML = '<div class="col-12 text-center"><p>Henüz kitap eklenmemiş.</p></div>';
         return;
     }
 
-    const books = [
-        { title: "Sarı Yüz", author: "R. F. Kuang", price: "120 ₺", condition: "Mükemmel", img: "https://i.dr.com.tr/cache/600x600-0/originals/0002171557001-1.jpg" },
-        { title: "Gece Yarısı Kütüphanesi", author: "Matt Haig", price: "90 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001922926001-1.jpg" },
-        { title: "Rezonans Kanunu", author: "Pierre Franckh", price: "75 ₺", condition: "İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001801769001-1.jpg" },
-        { title: "Engereğin Gözü", author: "Zülfü Livaneli", price: "85 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001902371001-1.jpg" },
-        { title: "Atomik Alışkanlıklar", author: "James Clear", price: "95 ₺", condition: "Mükemmel", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001983750001-1.jpg" },
-        { title: "1984", author: "George Orwell", price: "80 ₺", condition: "İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0001789098001-1.jpg" },
-        { title: "Simyacı", author: "Paulo Coelho", price: "70 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000064552-1.jpg" },
-        { title: "Sapiens", author: "Yuval Noah Harari", price: "130 ₺", condition: "Mükemmel", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000633872-1.jpg" },
-        { title: "Küçük Prens", author: "Antoine de Saint-Exupéry", price: "50 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000689023-1.jpg" },
-        { title: "Kürk Mantolu Madonna", author: "Sabahattin Ali", price: "65 ₺", condition: "Çok İyi", img: "https://i.dr.com.tr/cache/600x600-0/originals/0000000058245-1.jpg" }
-    ];
-
-    books.forEach(book => {
+    books.forEach((book, index) => {
         const col = document.createElement('div');
         col.className = 'col';
         col.innerHTML = `
-            <div class="card book-card shadow h-100" style="cursor: pointer;" onclick="openModal('${book.title}', '${book.author}', '${book.price}', '${book.condition}', '${book.img}')">
-                <img src="${book.img}" class="card-img-top book-img" alt="${book.title}" onerror="this.src='https://via.placeholder.com/300x450?text=Kapak+Yok';">
-                <div class="card-body d-flex flex-column text-center">
-                    <h5 class="card-title fw-bold">${book.title}</h5>
-                    <p class="text-muted">Yazar: ${book.author}</p>
-                    <span class="badge bg-success mb-2">${book.condition} Durumda</span>
-                    <p class="price mt-auto">${book.price}</p>
-                    <button class="btn btn-success btn-lg mt-3" onclick="event.stopPropagation(); alert('Sipariş için WhatsApp: +90 XXX XXX XX XX')">
-                        Kitabı Satın Al
+            <div class="card h-100 shadow-sm hover-shadow">
+                <img src="${book.image || 'https://via.placeholder.com/300x400?text=Kitap+Resmi+Yok'}" 
+                     class="card-img-top" 
+                     style="height: 350px; object-fit: cover;" 
+                     alt="${book.title}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${book.title}</h5>
+                    <p class="card-text">
+                        <strong>Yazar:</strong> ${book.author}<br>
+                        <strong>Durum:</strong> <span class="badge bg-info">${book.condition}</span><br>
+                        <strong>Fiyat:</strong> <span class="text-success fs-5">${book.price} ₺</span>
+                    </p>
+                    <button class="btn btn-primary mt-auto" 
+                            onclick="openModal(${index})">
+                        Detayları Gör
                     </button>
                 </div>
             </div>
         `;
         container.appendChild(col);
     });
-});
+}
 
-function openModal(title, author, price, condition, img) {
-    document.getElementById('modalTitle').innerText = title;
-    document.getElementById('modalAuthor').innerText = author;
-    document.getElementById('modalPrice').innerText = price;
-    document.getElementById('modalCondition').innerText = condition;
-    document.getElementById('modalImg').src = img;
+// فتح المودال مع تفاصيل الكتاب
+function openModal(index) {
+    const book = books[index];
+    document.getElementById('modalTitle').textContent = book.title;
+    document.getElementById('modalAuthor').textContent = book.author;
+    document.getElementById('modalPrice').textContent = book.price + ' ₺';
+    document.getElementById('modalCondition').textContent = book.condition;
+    document.getElementById('modalImg').src = book.image || 'https://via.placeholder.com/600x800?text=Kitap+Resmi+Yok';
+
     const modal = new bootstrap.Modal(document.getElementById('bookModal'));
     modal.show();
 }
-"Tكرار tamamen kaldırıldı"
+
+// إضافة كتاب جديد
+document.getElementById('add-book-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const newBook = {
+        title: document.getElementById('title').value.trim(),
+        author: document.getElementById('author').value.trim(),
+        condition: document.getElementById('condition').value,
+        price: parseInt(document.getElementById('price').value),
+        image: document.getElementById('image').value.trim() || null
+    };
+
+    if (!newBook.title || !newBook.author || isNaN(newBook.price)) {
+        alert('Lütfen tüm zorunlu alanları doldurun!');
+        return;
+    }
+
+    books.push(newBook);
+    localStorage.setItem('books', JSON.stringify(books));
+
+    renderBooks();
+    this.reset();
+    alert('✅ Kitap başarıyla eklendi!');
+});
+
+// عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', renderBooks);
+
 
 
 
