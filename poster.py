@@ -1,28 +1,31 @@
+
 from PIL import Image, ImageDraw, ImageFont
 import arabic_reshaper
 from bidi.algorithm import get_display
 import os
 
 def create_poster():
-    # إنشاء خلفية زاهية (تدرج لوني دافئ للعيد)
     width, height = 1080, 1350
-    img = Image.new('RGB', (width, height), '#FFF4E6')
+    img = Image.new('RGB', (width, height), '#1a1a4b')
     draw = ImageDraw.Draw(img)
     
-    # تلوين جزء من الخلفية بلمسة فنية
-    draw.rectangle([0, 0, width, 400], fill='#FFD3B6')
+    # محاولة إيجاد ملف الخط مهما كان اسمه المرفوع
+    font_path = "Cairo-VariableFont_slnt,wght.ttf"
     
-    # إعداد الخط (تأكدي أن الاسم يطابق الملف الذي رفعتِه)
-    font_path = "Cairo-Bold.ttf"
+    if not os.path.exists(font_path):
+        # بحث تلقائي عن أي ملف ينتهي بـ .ttf إذا فشل الاسم أعلاه
+        for file in os.listdir():
+            if file.endswith(".ttf"):
+                font_path = file
+                break
+
     title_font = ImageFont.truetype(font_path, 120)
     text_font = ImageFont.truetype(font_path, 50)
     
     def fix(t): return get_display(arabic_reshaper.reshape(t))
 
-    # كتابة النصوص
-    draw.text((540, 200), fix("كسوة العيد"), font=title_font, fill="#E67E22", anchor="mm")
+    draw.text((540, 200), fix("كسوة العيد"), font=title_font, fill="#d4af37", anchor="mm")
     
-    # تفاصيل الحملة
     y = 500
     info = [
         "أحب الأعمال إلى الله سرور تدخله على مسلم",
@@ -33,10 +36,9 @@ def create_poster():
     ]
     
     for line in info:
-        draw.text((540, y), fix(line), font=text_font, fill="#2C3E50", anchor="mm")
+        draw.text((540, y), fix(line), font=text_font, fill="white", anchor="mm")
         y += 100
 
-    # حفظ النتيجة
     if not os.path.exists('output'): os.makedirs('output')
     img.save("output/eid_poster.png")
 
