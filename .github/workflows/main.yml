@@ -1,0 +1,20 @@
+name: Poster Builder
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Libs
+        run: pip install Pillow arabic-reshaper python-bidi
+      - name: Run Script
+        run: python poster.py
+      - name: Save Poster
+        uses: actions/upload-artifact@v3
+        with:
+          name: final-poster
+          path: output/eid_poster.png
