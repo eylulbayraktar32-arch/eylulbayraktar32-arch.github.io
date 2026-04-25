@@ -14,7 +14,7 @@ jobs:
       - name: Run Script
         run: python poster.py
       - name: Save Poster
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: final-poster
           path: output/eid_poster.png
